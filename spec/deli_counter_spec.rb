@@ -30,7 +30,10 @@ describe 'Deli' do
     context "there are people in line" do
       it "should display the current line" do
         katz.line=["Danny", "Steph", "Victoria"]
-        expect($stdout).to receive(:puts).with("The line is currently: 1. Danny 2. Steph 3. Victoria")
+        expect($stdout).to receive(:puts).with("The line is currently:")
+        expect($stdout).to receive(:puts).with("1. Danny")
+        expect($stdout).to receive(:puts).with("2. Steph")
+        expect($stdout).to receive(:puts).with("3. Victoria")
         katz.line_status
       end
     end
@@ -59,7 +62,7 @@ describe 'Deli' do
         katz.take_a_number("Danny")
         katz.take_a_number("Steph")
         katz.take_a_number("Victoria")
-        expect(katz_deli).to eq(["Danny", "Steph", "Victoria"])
+        expect(katz.line).to eq(["Danny", "Steph", "Victoria"])
       end
     end
   end
